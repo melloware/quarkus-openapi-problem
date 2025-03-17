@@ -2,10 +2,6 @@
 
 [![License](https://img.shields.io/badge/license-Apache%202.0-blue.svg)](https://github.com/quarkiverse/quarkus-openapi-problem/blob/main/LICENSE.txt)
 
-[![Build status](https://github.com/quarkiverse/quarkus-openapi-problem/actions/workflows/unit-tests.yaml/badge.svg)](https://github.com/quarkiverse/quarkus-openapi-problem/actions/workflows/unit-tests.yaml)
-[![Build status](https://github.com/quarkiverse/quarkus-openapi-problem/actions/workflows/integration-tests.yaml/badge.svg)](https://github.com/quarkiverse/quarkus-openapi-problem/actions/workflows/integration-tests.yaml)
-[![Build status](https://github.com/quarkiverse/quarkus-openapi-problem/actions/workflows/native-mode-tests.yaml/badge.svg)](https://github.com/quarkiverse/quarkus-openapi-problem/actions/workflows/native-mode-tests.yaml)
-
 [RFC9457 Problem](https://www.rfc-editor.org/rfc/rfc9457#problem-json) extension for Quarkus RESTeasy/JaxRS applications. It maps Exceptions to `application/problem+json` HTTP responses. Inspired by [Zalando Problem library](https://github.com/zalando/problem), originally open sourced by [Tietoevry](https://github.com/evry), now part of Quarkiverse.
 
 This extension supports:
