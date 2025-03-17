@@ -14,7 +14,7 @@ This extension supports:
 
 This library extends the original RestEASY Problem library by providing first-class OpenAPI support, making it seamless to integrate with OpenAPI specifications and tooling.
 
-- Validation constraint violations return HTTP 422 Unprocessable Content status
+- Validation constraint violations return HTTP 422 Unprocessable Entity status
 - `HttpProblem` follows OpenAPI standards with POJO and Builder patterns
 - Mapped Diagnostic Context (MDC) values are included in the `context` field
 - Validation errors are represented in the RFC9457 `errors` array
