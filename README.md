@@ -1,2 +1,206 @@
-# quarkus-openapi-problem
-Unified error responses for Quarkus REST APIs via Problem Details for HTTP APIs (RFC9457 &amp; RFC7807)
+# Problem Details for HTTP APIs (RFC-9457) implementation for Quarkus.
+
+[![License](https://img.shields.io/badge/license-Apache%202.0-blue.svg)](https://github.com/quarkiverse/quarkus-openapi-problem/blob/main/LICENSE.txt)
+
+[![Build status](https://github.com/quarkiverse/quarkus-openapi-problem/actions/workflows/unit-tests.yaml/badge.svg)](https://github.com/quarkiverse/quarkus-openapi-problem/actions/workflows/unit-tests.yaml)
+[![Build status](https://github.com/quarkiverse/quarkus-openapi-problem/actions/workflows/integration-tests.yaml/badge.svg)](https://github.com/quarkiverse/quarkus-openapi-problem/actions/workflows/integration-tests.yaml)
+[![Build status](https://github.com/quarkiverse/quarkus-openapi-problem/actions/workflows/native-mode-tests.yaml/badge.svg)](https://github.com/quarkiverse/quarkus-openapi-problem/actions/workflows/native-mode-tests.yaml)
+
+[RFC9457 Problem](https://www.rfc-editor.org/rfc/rfc9457#problem-json) extension for Quarkus RESTeasy/JaxRS applications. It maps Exceptions to `application/problem+json` HTTP responses. Inspired by [Zalando Problem library](https://github.com/zalando/problem), originally open sourced by [Tietoevry](https://github.com/evry), now part of Quarkiverse.
+
+This extension supports:
+- Quarkus 3
+- `quarkus-resteasy-jackson` and `quarkus-resteasy-jsonb`
+- `quarkus-rest-jackson` and `quarkus-rest-jsonb`
+- JVM and native mode
+
+## Differences from RestEASY Problem
+
+This library extends the original RestEASY Problem library by providing first-class OpenAPI support, making it seamless to integrate with OpenAPI specifications and tooling.
+
+- Validation constraint violations return HTTP 422 Unprocessable Content status
+- `HttpProblem` follows OpenAPI standards with POJO and Builder patterns
+- Mapped Diagnostic Context (MDC) values are included in the `context` field
+- Validation errors are represented in the RFC9457 `errors` array
+
+## Why you should use this extension?
+- __consistency__ - it unifies your REST API error messages, and gives it much needed consistency, no matter which JSON provider (Jackson vs JsonB) or paradigm (classic/blocking vs reactive) you're using.   
+
+- __predictability__ - no matter what kind of exception is thrown: expected (thrown by you on purpose), or unexpected (not thrown 'by design') - your API consumer gets similar, repeatable experience.  
+
+- __safety__ - it helps prevent leakage of some implementation details like stack-traces, DTO/resource class names etc.
+
+- __time-saving__ - in most cases you will not have to implement your own JaxRS `ExceptionMapper`s anymore, which makes your app smaller, and less error-prone. 
+
+See [Built-in Exception Mappers Wiki](https://github.com/quarkiverse/quarkus-openapi-problem/wiki#built-in-exception-mappers) for more details.
+
+From [RFC9457](https://tools.ietf.org/html/rfc9457):
+```
+HTTP [RFC7230] status codes are sometimes not sufficient to convey
+enough information about an error to be helpful.  While humans behind
+Web browsers can be informed about the nature of the problem with an
+HTML [W3C.REC-html5-20141028] response body, non-human consumers of
+so-called "HTTP APIs" are usually not.
+```
+
+## Usage
+### Quarkus 3.14+
+Add this to your pom.xml:
+```xml
+<dependency>
+    <groupId>io.quarkiverse.openapi-problem</groupId>
+    <artifactId>quarkus-openapi-problem</artifactId>
+    <version>3.19.0</version>
+</dependency>
+```
+
+Once you run Quarkus: `./mvnw compile quarkus:dev`, and you will find `openapi-problem` in the logs:
+<pre>
+Installed features: [cdi, resteasy, resteasy-jackson, <b><u>openapi-problem</u></b>]
+</pre>
+
+Now you can throw `HttpProblem`s (using builder or a subclass), JaxRS exceptions (e.g `NotFoundException`) or `ThrowableProblem`s from Zalando library:
+
+```java
+package problem;
+
+import io.quarkiverse.resteasy.problem.HttpProblem;
+import jakarta.ws.rs.GET;
+import jakarta.ws.rs.Path;
+import jakarta.ws.rs.core.Response;
+
+@Path("/hello")
+public class HelloResource {
+
+    @GET
+    public String hello() {
+        throw new HelloProblem("rfc9457-by-example");
+    }
+
+    static class HelloProblem extends HttpProblem {
+        HelloProblem(String message) {
+            super(builder()
+                    .withTitle("Bad hello request")
+                    .withStatus(Response.Status.BAD_REQUEST)
+                    .withDetail(message)
+                    .withHeader("X-RFC9457-Message", message)
+                    .withContext("hello", "world"));
+        }
+    }
+}
+```
+
+Open [http://localhost:8080/hello](http://localhost:8080/hello) in your browser, and you should see this response:
+
+```json
+HTTP/1.1 400 Bad Request
+X-RFC9457-Message: rfc9457-by-example
+Content-Type: application/problem+json
+        
+{
+    "status": 400,
+    "title": "Bad hello request",
+    "detail": "rfc9457-by-example",
+    "instance": "/hello",
+    "context": {
+        "hello": "world"
+    }
+}
+```
+
+This extension will also produce the following log message:
+```
+10:53:48 INFO [http-problem] (executor-thread-1) status=400, title="Bad hello request", detail="rfc9457-by-example"
+```
+Exceptions transformed into http 500s (aka server errors) will be logged as `ERROR`, including full stacktrace.
+
+You may also want to check [this article](https://dzone.com/articles/when-http-status-codes-are-not-enough-tackling-web) on RFC9457 practical usage.  
+More on throwing problems: [zalando/problem usage](https://github.com/zalando/problem#usage)
+
+## Configuration options
+
+- (Build time) Include MDC properties in the API response. You have to provide those properties to MDC using `MDC.put`
+```
+quarkus.openapi.problem.include-mdc-properties=uuid,application,version
+```
+Result:
+```json
+{
+  "status": 500,
+  "title": "Internal Server Error",
+  "context": {
+    "uuid": "d79f8cfa-ef5b-4501-a2c4-8f537c08ec0c",
+    "application": "awesome-microservice", 
+    "version": "1.0"
+  }
+}
+```
+
+- (Runtime) Changes default `400 Bad request` response status when `ConstraintViolationException` is thrown (e.g. by Hibernate Validator)
+```
+quarkus.openapi.problem.constraint-violation.status=422
+quarkus.openapi.problem.constraint-violation.title=Constraint violation
+```
+Result:
+```json
+HTTP/1.1 422 Unprocessable Entity
+Content-Type: application/problem+json
+
+{
+    "status": 422,
+    "title": "Constraint violation",
+    (...)
+}
+```
+
+- (Build time) Enable Smallrye (Microprofile) metrics for http error counters. Requires `quarkus-smallrye-metrics` in the classpath.
+
+Please note that if you use `quarkus-micrometer-registry-prometheus` you don't need this feature - http error metrics will be produced regardless of this setting or presence of this extension.
+
+```
+quarkus.openapi.problem.metrics.enabled=true
+```
+Result:
+```
+GET /metrics
+application_http_error_total{status="401"} 3.0
+application_http_error_total{status="500"} 5.0
+```
+
+- (Runtime) Tuning logging
+```
+quarkus.log.category.http-problem.level=INFO # default: all problems are logged
+quarkus.log.category.http-problem.level=ERROR # only HTTP 5XX problems are logged
+quarkus.log.category.http-problem.level=OFF # disables all problems-related logging
+```
+
+## Custom ProblemPostProcessor
+If you want to intercept, change or augment a mapped `HttpProblem` before it gets serialized into raw HTTP response 
+body, you can create a bean extending `ProblemPostProcessor`, and override `apply` method.
+
+Example:
+```java
+@ApplicationScoped
+class CustomPostProcessor implements ProblemPostProcessor {
+    
+    @Inject // acts like normal bean, DI works fine etc
+    Validator validator;
+    
+    @Override
+    public HttpProblem apply(HttpProblem problem, ProblemContext context) {
+        return HttpProblem.builder(problem)
+                .with("injected_from_custom_post_processor", "hello world " + context.path)
+                .build();
+    }
+    
+}
+```
+
+## Troubles?
+
+If you have questions, concerns, bug reports, etc, please file an issue in this repository's Issue Tracker. You may also want to have a look at [troubleshooting FAQ](./TROUBLESHOOTING.md).
+
+## Contributing
+
+To contribute, simply make a pull request and add a brief description (1-2 sentences) of your addition or change.
+For more details check the [contribution guidelines](./CONTRIBUTING.md).
