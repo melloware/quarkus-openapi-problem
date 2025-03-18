@@ -26,7 +26,7 @@ class HttpProblemTest {
     void copyBuilderShouldCopyAllFields() {
         HttpProblem original = complexProblem().build();
 
-        HttpProblem copy = HttpProblem.toBuilder(original).build();
+        HttpProblem copy = original.toBuilder().build();
 
         assertThat(copy).usingRecursiveComparison().isEqualTo(original);
     }

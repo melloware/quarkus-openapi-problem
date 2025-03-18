@@ -32,7 +32,7 @@ import lombok.extern.jackson.Jacksonized;
 @EqualsAndHashCode(callSuper = true)
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder(setterPrefix = "with")
+@Builder(setterPrefix = "with", toBuilder = true)
 @Jacksonized
 @Schema(description = "HTTP Problem Response according to RFC 9457")
 public class HttpProblem extends RuntimeException {
@@ -119,18 +119,6 @@ public class HttpProblem extends RuntimeException {
                 .withStatus(status.getStatusCode())
                 .withDetail(detail)
                 .build();
-    }
-
-    public static HttpProblemBuilder toBuilder(HttpProblem problem) {
-        return builder()
-                .withTitle(problem.getTitle())
-                .withStatus(problem.getStatus())
-                .withDetail(problem.getDetail())
-                .withType(problem.getType())
-                .withInstance(problem.getInstance())
-                .withContexts(problem.getContexts())
-                .withHeaders(problem.getHeaders())
-                .withErrors(problem.getErrors());
     }
 
 }

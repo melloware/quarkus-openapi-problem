@@ -9,7 +9,7 @@ class CustomPostProcessor implements ProblemPostProcessor {
 
     @Override
     public HttpProblem apply(HttpProblem problem, ProblemContext context) {
-        return HttpProblem.toBuilder(problem)
+        return problem.toBuilder()
                 .withContext("injected_from_custom_post_processor", "you called " + context.path)
                 .build();
     }

@@ -201,11 +201,53 @@ class CustomPostProcessor implements ProblemPostProcessor {
 }
 ```
 
-## Troubles?
+## Microprofile Client
 
-If you have questions, concerns, bug reports, etc, please file an issue in this repository's Issue Tracker. You may also want to have a look at [troubleshooting FAQ](./TROUBLESHOOTING.md).
+When using MicroProfile REST Client to make HTTP calls between services, you need to register a `ResponseExceptionMapper` to properly handle and propagate `HttpProblem` responses. Otherwise, the original problem details will be lost when crossing service boundaries.
 
-## Contributing
+Add the following mapper to your codebase:
 
-To contribute, simply make a pull request and add a brief description (1-2 sentences) of your addition or change.
-For more details check the [contribution guidelines](./CONTRIBUTING.md).
+```java
+import jakarta.ws.rs.Priorities;
+import jakarta.ws.rs.core.Response;
+import jakarta.ws.rs.ext.Provider;
+
+import org.eclipse.microprofile.rest.client.ext.ResponseExceptionMapper;
+
+import io.quarkiverse.openapi.problem.HttpProblem;
+
+/**
+ * Provider used in MicroProfile REST Client applications to handle HttpProblem responses between API calls.
+ * When one service calls another service using MicroProfile REST Client, this mapper will:
+ * <ul>
+ * <li>Check if the response contains an HttpProblem (via application/problem+json media type)</li>
+ * <li>If found, deserialize the response into an HttpProblem object</li>
+ * <li>Re-throw the HttpProblem, preserving the original error details across service boundaries</li>
+ * </ul>
+ * This enables consistent error handling and propagation in microservice architectures.
+ */
+@Provider
+public class HttpProblemClientExceptionMapper implements ResponseExceptionMapper<RuntimeException> {
+
+    @Override
+    public RuntimeException toThrowable(Response response) {
+        if (!HttpProblem.APPLICATION_JSON_PROBLEM_TYPE.equals(response.getMediaType())) {
+            return null; // Let others handle non-problem formats
+        }
+
+        try {
+            return response.readEntity(HttpProblem.class);
+        } catch (Exception e) {
+            return new RuntimeException(e);
+        }
+    }
+
+    /**
+     * We want this to run first before the other HttpProblem provider
+     */
+    @Override
+    public int getPriority() {
+        return Priorities.USER - 100;
+    }
+}
+```

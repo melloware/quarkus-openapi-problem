@@ -20,7 +20,7 @@ final class ProblemDefaultsProvider implements ProblemPostProcessor {
             return problem;
         }
 
-        return HttpProblem.toBuilder(problem)
+        return problem.toBuilder()
                 .withInstance(InstanceUtils.pathToInstance(context.path))
                 .build();
     }

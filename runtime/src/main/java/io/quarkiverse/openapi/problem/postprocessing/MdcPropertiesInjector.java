@@ -30,7 +30,7 @@ final class MdcPropertiesInjector implements ProblemPostProcessor {
             return problem;
         }
 
-        HttpProblem.HttpProblemBuilder builder = HttpProblem.toBuilder(problem);
+        HttpProblem.HttpProblemBuilder builder = problem.toBuilder();
 
         properties.stream()
                 .filter(propertyName -> !problem.getContexts().containsKey(propertyName))
