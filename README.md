@@ -1,6 +1,6 @@
 # Problem Details for HTTP APIs (RFC-9457) implementation for Quarkus.
 
-[![License](https://img.shields.io/badge/license-Apache%202.0-blue.svg)](https://github.com/quarkiverse/quarkus-openapi-problem/blob/main/LICENSE.txt)
+[![License](https://img.shields.io/badge/license-Apache%202.0-yellow.svg)](https://github.com/quarkiverse/quarkus-openapi-problem/blob/main/LICENSE.txt)
 
 [RFC9457 Problem](https://www.rfc-editor.org/rfc/rfc9457#problem-json) extension for Quarkus RESTeasy/JaxRS applications. It maps Exceptions to `application/problem+json` HTTP responses. Inspired by [Zalando Problem library](https://github.com/zalando/problem), originally open sourced by [Tietoevry](https://github.com/evry), now part of Quarkiverse.
 
@@ -10,14 +10,16 @@ This extension supports:
 - `quarkus-rest-jackson` and `quarkus-rest-jsonb`
 - JVM and native mode
 
-## Differences from RestEASY Problem
+## Differences from Quarkus RestEASY Problem
 
-This library extends the original RestEASY Problem library by providing first-class OpenAPI support, making it seamless to integrate with OpenAPI specifications and tooling.
+This library extends the original [Quarkus RestEASY Problem](https://github.com/quarkiverse/quarkus-resteasy-problem) library by providing first-class OpenAPI support, making it seamless to integrate with OpenAPI specifications and tooling.
 
-- Validation constraint violations return HTTP 422 Unprocessable Entity status
-- `HttpProblem` follows OpenAPI standards with POJO and Builder patterns
+- RFC-9457 support only (dropped support of RFC-7807)
+- Validation constraint violations return `HTTP 422 Unprocessable Entity` status
+- `HttpProblem` follows OpenAPI standards and is JSON serializable
 - Mapped Diagnostic Context (MDC) values are included in the `context` field
 - Validation errors are represented in the RFC9457 `errors` array
+- `@ApiResponse` for 4xx/5xx automatically get mapped with `content = @Content(mediaType = "application/problem+json", schema = @Schema(implementation = HttpProblem.class))`
 
 ## Why you should use this extension?
 - __consistency__ - it unifies your REST API error messages, and gives it much needed consistency, no matter which JSON provider (Jackson vs JsonB) or paradigm (classic/blocking vs reactive) you're using.   
@@ -30,7 +32,7 @@ This library extends the original RestEASY Problem library by providing first-cl
 
 See [Built-in Exception Mappers Wiki](https://github.com/quarkiverse/quarkus-openapi-problem/wiki#built-in-exception-mappers) for more details.
 
-From [RFC9457](https://tools.ietf.org/html/rfc9457):
+From [RFC9457](https://www.rfc-editor.org/rfc/rfc9457#name-introduction):
 ```
 HTTP [RFC7230] status codes are sometimes not sufficient to convey
 enough information about an error to be helpful.  While humans behind
@@ -52,7 +54,7 @@ Add this to your pom.xml:
 
 Once you run Quarkus: `./mvnw compile quarkus:dev`, and you will find `openapi-problem` in the logs:
 <pre>
-Installed features: [cdi, resteasy, resteasy-jackson, <b><u>openapi-problem</u></b>]
+Installed features: [cdi, rest, rest-jackson, <b><u>openapi-problem</u></b>]
 </pre>
 
 Now you can throw `HttpProblem`s (using builder or a subclass), JaxRS exceptions (e.g `NotFoundException`) or `ThrowableProblem`s from Zalando library:
@@ -60,7 +62,7 @@ Now you can throw `HttpProblem`s (using builder or a subclass), JaxRS exceptions
 ```java
 package problem;
 
-import io.quarkiverse.resteasy.problem.HttpProblem;
+import io.quarkiverse.openapi.problem.HttpProblem;
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.Path;
 import jakarta.ws.rs.core.Response;
@@ -77,7 +79,7 @@ public class HelloResource {
         HelloProblem(String message) {
             super(builder()
                     .withTitle("Bad hello request")
-                    .withStatus(Response.Status.BAD_REQUEST)
+                    .withStatus(Response.Status.BAD_REQUEST.getStatusCode())
                     .withDetail(message)
                     .withHeader("X-RFC9457-Message", message)
                     .withContext("hello", "world"));
