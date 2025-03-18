@@ -2,10 +2,7 @@ package io.quarkiverse.openapi.problem;
 
 import java.net.URI;
 import java.util.List;
-import java.util.Optional;
-import java.util.Set;
 import java.util.SortedMap;
-import java.util.TreeMap;
 
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
@@ -46,8 +43,6 @@ public class HttpProblem extends RuntimeException {
      */
     public static final MediaType APPLICATION_JSON_PROBLEM_TYPE = new MediaType("application", "problem+json");
 
-    private static final Set<String> RESERVED_PROPERTIES = Set.of("type", "title", "status", "detail", "instance");
-
     /** A URI reference that identifies the problem type */
     @Schema(description = "A URI reference that identifies the problem type", examples = "https://example.com/errors/validation")
     private URI type;
@@ -84,15 +79,8 @@ public class HttpProblem extends RuntimeException {
     private List<Violation> errors;
 
     public HttpProblem(HttpProblem problem) {
-        super();
-        this.type = problem.getType();
-        this.title = problem.getTitle();
-        this.status = problem.getStatus();
-        this.detail = problem.getDetail();
-        this.instance = problem.getInstance();
-        this.errors = problem.getErrors();
-        this.contexts = Optional.ofNullable(problem.contexts).orElseGet(TreeMap::new);
-        this.headers = Optional.ofNullable(problem.headers).orElseGet(TreeMap::new);
+        this(problem.getType(), problem.getTitle(), problem.getStatus(), problem.getDetail(), problem.getInstance(),
+                problem.getContexts(), problem.getHeaders(), problem.getErrors());
     }
 
     public Response toResponse() {
