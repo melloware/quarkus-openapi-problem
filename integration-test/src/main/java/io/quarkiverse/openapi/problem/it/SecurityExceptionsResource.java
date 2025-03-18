@@ -1,4 +1,4 @@
-package io.quarkiverse.openapi.problem;
+package io.quarkiverse.openapi.problem.it;
 
 import io.quarkus.security.AuthenticationFailedException;
 import io.quarkus.security.ForbiddenException;

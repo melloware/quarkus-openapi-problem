@@ -1,4 +1,4 @@
-package io.quarkiverse.openapi.it;
+package io.quarkiverse.openapi.problem.it;
 
 import io.quarkus.test.junit.QuarkusTest;
 import io.quarkus.test.junit.QuarkusTestProfile;

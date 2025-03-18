@@ -1,4 +1,4 @@
-package io.quarkiverse.openapi.it;
+package io.quarkiverse.openapi.problem.it;
 
 import static io.restassured.RestAssured.given;
 import static org.assertj.core.api.Assertions.assertThat;

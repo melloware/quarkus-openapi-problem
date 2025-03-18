@@ -1,4 +1,4 @@
-package io.quarkiverse.openapi.it;
+package io.quarkiverse.openapi.problem.it;
 
 import static io.restassured.RestAssured.given;
 import static jakarta.ws.rs.core.Response.Status.FORBIDDEN;

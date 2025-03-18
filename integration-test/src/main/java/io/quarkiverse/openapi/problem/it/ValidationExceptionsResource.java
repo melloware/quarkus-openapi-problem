@@ -1,4 +1,4 @@
-package io.quarkiverse.openapi.problem;
+package io.quarkiverse.openapi.problem.it;
 
 import jakarta.validation.Valid;
 import jakarta.validation.ValidationException;

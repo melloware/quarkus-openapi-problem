@@ -78,8 +78,8 @@ public class HttpProblem extends RuntimeException {
     @Schema(description = "List of validation constraint violations that occurred")
     private List<Violation> errors;
 
-    /** Original cause of error */
-    @Schema(description = "Original cause of error")
+    /** Original cause of error, only set when forwarding an underlying problem */
+    @Schema(description = "Original cause of error, only set when forwarding an underlying problem")
     private HttpProblem cause;
 
     public HttpProblem(HttpProblem problem) {

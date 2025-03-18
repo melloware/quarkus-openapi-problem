@@ -1,8 +1,9 @@
-package io.quarkiverse.openapi.problem;
+package io.quarkiverse.openapi.problem.it;
 
 import java.util.List;
 import java.util.UUID;
 
+import io.quarkiverse.openapi.problem.HttpProblem;
 import org.eclipse.microprofile.openapi.annotations.Operation;
 import org.eclipse.microprofile.openapi.annotations.media.Content;
 import org.eclipse.microprofile.openapi.annotations.media.Schema;

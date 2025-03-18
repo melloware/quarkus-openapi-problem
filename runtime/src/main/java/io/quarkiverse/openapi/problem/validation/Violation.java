@@ -15,7 +15,8 @@ public final class Violation {
     private String pointer;
 
     /** Location where the validation error occurred */
-    @Schema(description = "Location where the validation error occurred", examples = "body")
+    @Schema(description = "Location where the validation error occurred such as query, path, header, form, body", examples = {
+            "query", "path", "header", "form", "body" })
     private String in;
 
     /** Description of the validation error */

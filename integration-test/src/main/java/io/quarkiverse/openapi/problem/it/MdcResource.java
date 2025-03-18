@@ -1,4 +1,4 @@
-package io.quarkiverse.openapi.problem;
+package io.quarkiverse.openapi.problem.it;
 
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.Path;

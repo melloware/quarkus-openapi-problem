@@ -1,4 +1,4 @@
-package io.quarkiverse.openapi.problem;
+package io.quarkiverse.openapi.problem.it;
 
 import static jakarta.ws.rs.core.HttpHeaders.RETRY_AFTER;
 

@@ -1,5 +1,6 @@
-package io.quarkiverse.openapi.problem;
+package io.quarkiverse.openapi.problem.it;
 
+import io.quarkiverse.openapi.problem.HttpProblem;
 import io.quarkiverse.openapi.problem.postprocessing.ProblemContext;
 import io.quarkiverse.openapi.problem.postprocessing.ProblemPostProcessor;
 import jakarta.enterprise.context.ApplicationScoped;

@@ -1,7 +1,7 @@
-package io.quarkiverse.openapi.it;
+package io.quarkiverse.openapi.problem.it;
 
-import static io.quarkiverse.openapi.it.AuthTestUtils.givenAnonymous;
-import static io.quarkiverse.openapi.it.AuthTestUtils.givenUser;
+import static io.quarkiverse.openapi.problem.it.AuthTestUtils.givenAnonymous;
+import static io.quarkiverse.openapi.problem.it.AuthTestUtils.givenUser;
 import static io.restassured.RestAssured.given;
 import static jakarta.ws.rs.core.Response.Status.FORBIDDEN;
 import static jakarta.ws.rs.core.Response.Status.UNAUTHORIZED;
