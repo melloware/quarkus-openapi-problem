@@ -35,4 +35,73 @@ public final class HttpProblemMother {
                 .withHeader("X-String-Header", "ABC");
     }
 
+    public static HttpProblem.HttpProblemBuilder singleNestedProblem() {
+
+        HttpProblem orig = HttpProblem.builder()
+                .withType(URI.create("http://tietoevry.com/problem"))
+                .withInstance(URI.create("/endpoint"))
+                .withStatus(BAD_REQUEST.getStatusCode())
+                .withTitle("Something wrong in the dirt")
+                .withDetail("Deep down wrongness, zażółć gęślą jaźń for Håkensth")
+                .withContext("custom_field_1", "too long")
+                .withContext("custom_field_2", "too short")
+                .withHeader("X-Numeric-Header", 123)
+                .withHeader("X-String-Header", "ABC")
+                .build();
+
+        return HttpProblem.builder()
+                .withType(URI.create("http://tietoevry.com/problem"))
+                .withInstance(URI.create("/endpoint"))
+                .withStatus(BAD_REQUEST.getStatusCode())
+                .withTitle("Something wrong in the dirt")
+                .withDetail("Deep down wrongness, zażółć gęślą jaźń for Håkensth")
+                .withContext("custom_field_1", "too long")
+                .withContext("custom_field_2", "too short")
+                .withHeader("X-Numeric-Header", 123)
+                .withHeader("X-String-Header", "ABC")
+                .withCause(orig);
+
+    }
+
+    public static HttpProblem.HttpProblemBuilder doubleNessProblem() {
+
+        HttpProblem orig = HttpProblem.builder()
+                .withType(URI.create("http://tietoevry.com/problem"))
+                .withInstance(URI.create("/endpoint"))
+                .withStatus(BAD_REQUEST.getStatusCode())
+                .withTitle("Something wrong in the dirt")
+                .withDetail("Deep down wrongness, zażółć gęślą jaźń for Håkensth")
+                .withContext("custom_field_1", "too long")
+                .withContext("custom_field_2", "too short")
+                .withHeader("X-Numeric-Header", 123)
+                .withHeader("X-String-Header", "ABC")
+                .build();
+
+        HttpProblem nested = HttpProblem.builder()
+                .withType(URI.create("http://tietoevry.com/problem"))
+                .withInstance(URI.create("/endpoint"))
+                .withStatus(BAD_REQUEST.getStatusCode())
+                .withTitle("Something wrong in the dirt")
+                .withDetail("Deep down wrongness, zażółć gęślą jaźń for Håkensth")
+                .withContext("custom_field_1", "too long")
+                .withContext("custom_field_2", "too short")
+                .withHeader("X-Numeric-Header", 123)
+                .withHeader("X-String-Header", "ABC")
+                .withCause(orig)
+                .build();
+
+        return HttpProblem.builder()
+                .withType(URI.create("http://tietoevry.com/problem"))
+                .withInstance(URI.create("/endpoint"))
+                .withStatus(BAD_REQUEST.getStatusCode())
+                .withTitle("Something wrong in the dirt")
+                .withDetail("Deep down wrongness, zażółć gęślą jaźń for Håkensth")
+                .withContext("custom_field_1", "too long")
+                .withContext("custom_field_2", "too short")
+                .withHeader("X-Numeric-Header", 123)
+                .withHeader("X-String-Header", "ABC")
+                .withCause(nested);
+
+    }
+
 }

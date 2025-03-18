@@ -70,4 +70,43 @@ class JsonbProblemSerializerTest {
         return outputStream.toString(StandardCharsets.UTF_8);
     }
 
+    @Test
+    @DisplayName("Should serialize single nested cause field")
+    void shouldSerializeOnlySingleNestedProblem() {
+
+        // Result of json conversion
+        String result = """
+                {"type":"http://tietoevry.com/problem","status":400,"title":"Something wrong in the dirt","detail":"Deep down wrongness, zażółć gęślą jaźń for Håkensth","instance":"/endpoint","context":{"custom_field_1":"too long","custom_field_2":"too short"},"cause":{"type":"http://tietoevry.com/problem","status":400,"title":"Something wrong in the dirt","detail":"Deep down wrongness, zażółć gęślą jaźń for Håkensth","instance":"/endpoint","context":{"custom_field_1":"too long","custom_field_2":"too short"}}}
+                """;
+
+        // Get the HttpProblem to test
+        HttpProblem problem = HttpProblemMother.singleNestedProblem().build();
+
+        // Serialize
+        serializer.serialize(problem, jsonGenerator, context);
+
+        // Compare results
+        assertThat(serializedProblem().trim())
+                .isEqualTo(result.trim());
+    }
+
+    @Test
+    @DisplayName("Should serialize double nested cause field")
+    void shouldSerializeDoubleNestedProblem() {
+
+        // Result of json conversion
+        String result = """
+                {"type":"http://tietoevry.com/problem","status":400,"title":"Something wrong in the dirt","detail":"Deep down wrongness, zażółć gęślą jaźń for Håkensth","instance":"/endpoint","context":{"custom_field_1":"too long","custom_field_2":"too short"},"cause":{"type":"http://tietoevry.com/problem","status":400,"title":"Something wrong in the dirt","detail":"Deep down wrongness, zażółć gęślą jaźń for Håkensth","instance":"/endpoint","context":{"custom_field_1":"too long","custom_field_2":"too short"},"cause":{"type":"http://tietoevry.com/problem","status":400,"title":"Something wrong in the dirt","detail":"Deep down wrongness, zażółć gęślą jaźń for Håkensth","instance":"/endpoint","context":{"custom_field_1":"too long","custom_field_2":"too short"}}}}
+                """;
+
+        // Get the HttpProblem to test
+        HttpProblem problem = HttpProblemMother.doubleNessProblem().build();
+
+        // Serialize
+        serializer.serialize(problem, jsonGenerator, context);
+
+        // Compare results
+        assertThat(serializedProblem().trim())
+                .isEqualTo(result.trim());
+    }
 }
