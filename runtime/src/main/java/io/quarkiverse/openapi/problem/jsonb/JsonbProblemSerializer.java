@@ -50,6 +50,12 @@ public final class JsonbProblemSerializer implements JsonbSerializer<HttpProblem
             generator.writeEnd();
         }
 
+        // Serialize the cause recursively
+        if (problem.getCause() != null) {
+            generator.writeKey("cause");
+            serialize(problem.getCause(), generator, ctx);
+        }
+
         generator.writeEnd();
     }
 }

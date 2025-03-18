@@ -59,6 +59,11 @@ public final class JacksonProblemSerializer extends StdSerializer<HttpProblem> {
             json.writeObjectField("errors", problem.getErrors());
         }
 
+        // Write the cause element if present
+        if (problem.getCause() != null) {
+            json.writeObjectField("cause", problem.getCause());
+        }
+
         json.writeEndObject();
     }
 }

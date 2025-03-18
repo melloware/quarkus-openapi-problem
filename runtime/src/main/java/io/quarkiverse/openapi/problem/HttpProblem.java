@@ -78,9 +78,13 @@ public class HttpProblem extends RuntimeException {
     @Schema(description = "List of validation constraint violations that occurred")
     private List<Violation> errors;
 
+    /** Original cause of error */
+    @Schema(description = "Original cause of error")
+    private HttpProblem cause;
+
     public HttpProblem(HttpProblem problem) {
         this(problem.getType(), problem.getTitle(), problem.getStatus(), problem.getDetail(), problem.getInstance(),
-                problem.getContexts(), problem.getHeaders(), problem.getErrors());
+                problem.getContexts(), problem.getHeaders(), problem.getErrors(), problem.getCause());
     }
 
     public Response toResponse() {
