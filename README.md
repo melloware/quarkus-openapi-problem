@@ -19,7 +19,7 @@ This extension supports:
 
 ## Differences from Quarkus RestEASY Problem
 
-This library extends the original [Quarkus RestEASY Problem](https://github.com/quarkiverse/quarkus-resteasy-problem) library by providing first-class OpenAPI support, making it seamless to integrate with OpenAPI specifications and tooling.
+This library extends the original [Quarkus RestEASY Problem](https://github.com/quarkiverse/quarkus-resteasy-problem) library by providing first-class OpenAPI support, making it seamless to integrate with OpenAPI specifications and tooling. Opinionated changes include the following:
 
 - RFC-9457 support only (dropped support of RFC-7807)
 - Validation constraint violations return `HTTP 422 Unprocessable Entity` status
