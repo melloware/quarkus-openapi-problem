@@ -1,7 +1,6 @@
 package io.quarkiverse.openapi.problem.test.server.service_two;
 
 import jakarta.ws.rs.*;
-import jakarta.ws.rs.core.MediaType;
 
 /**
  * Simulates a backend service that is called by service one

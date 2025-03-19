@@ -1,18 +1,18 @@
 package io.quarkiverse.openapi.problem.test.server.service_one;
 
-import io.quarkiverse.openapi.problem.HttpProblem;
-import io.quarkiverse.openapi.problem.test.client.ServiceTwoClient;
 import jakarta.inject.Inject;
 import jakarta.ws.rs.*;
-import jakarta.ws.rs.core.MediaType;
+
 import org.eclipse.microprofile.rest.client.inject.RestClient;
+
+import io.quarkiverse.openapi.problem.HttpProblem;
+import io.quarkiverse.openapi.problem.test.client.ServiceTwoClient;
 
 /**
  * Simulates a backend service
  */
 @Path("/server/svc1")
 public class ServiceOneResource {
-
 
     /**
      * Used to call downstream service
