@@ -46,6 +46,7 @@
         <module>runtime</module>
         <module>deployment</module>
         <module>integration-test</module>
+        <module>integration-tests-client</module>
     </modules>
 
     <dependencyManagement>

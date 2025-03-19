@@ -1,18 +1,17 @@
 package io.quarkiverse.openapi.problem.test;
 
-
-import io.quarkiverse.openapi.problem.HttpProblem;
-import io.quarkus.test.junit.QuarkusTest;
-import org.junit.jupiter.api.Test;
+import static io.restassured.RestAssured.given;
+import static org.hamcrest.CoreMatchers.equalTo;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.*;
 
 import java.net.URI;
 import java.util.Collections;
 
-import static io.restassured.RestAssured.given;
-import static org.hamcrest.CoreMatchers.equalTo;
-import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.*;
+import org.junit.jupiter.api.Test;
+
+import io.quarkiverse.openapi.problem.HttpProblem;
+import io.quarkus.test.junit.QuarkusTest;
 
 /**
  * Programmatically tests the response from the services

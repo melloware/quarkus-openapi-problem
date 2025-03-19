@@ -1,12 +1,15 @@
 package io.quarkiverse.openapi.problem.test;
 
-import io.vertx.ext.web.RoutingContext;
+import java.util.UUID;
+
 import jakarta.inject.Inject;
 import jakarta.ws.rs.container.ContainerRequestContext;
-import java.util.UUID;
+
 import org.jboss.logmanager.MDC;
 import org.jboss.resteasy.reactive.server.ServerRequestFilter;
 import org.jboss.resteasy.reactive.server.ServerResponseFilter;
+
+import io.vertx.ext.web.RoutingContext;
 
 /**
  * Utility class for managing request-related information using JBossLog MDC
@@ -25,7 +28,6 @@ public class RequestIdFilters {
      * Key for request IP address stored in the MDC context.
      */
     public static final String REQUEST_IP_MDC_KEY = "X-Request-Address";
-
 
     /**
      * Injects the Vert.x RoutingContext to access the request object.
