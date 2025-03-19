@@ -5,13 +5,11 @@ import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;
 
-import java.net.URI;
-import java.util.Collections;
-
-import org.junit.jupiter.api.Test;
-
 import io.quarkiverse.openapi.problem.HttpProblem;
 import io.quarkus.test.junit.QuarkusTest;
+import java.net.URI;
+import java.util.Collections;
+import org.junit.jupiter.api.Test;
 
 /**
  * Programmatically tests the response from the services

@@ -1,15 +1,8 @@
 package io.quarkiverse.openapi.problem.validation;
 
-import java.lang.reflect.Method;
-import java.lang.reflect.Parameter;
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Optional;
-import java.util.Set;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
-
+import io.quarkiverse.openapi.problem.ExceptionMapperBase;
+import io.quarkiverse.openapi.problem.HttpProblem;
+import io.quarkiverse.openapi.problem.ProblemRuntimeConfig.ConstraintViolationMapperConfig;
 import jakarta.annotation.Priority;
 import jakarta.validation.ConstraintViolation;
 import jakarta.validation.ConstraintViolationException;
@@ -21,10 +14,15 @@ import jakarta.ws.rs.Priorities;
 import jakarta.ws.rs.QueryParam;
 import jakarta.ws.rs.container.ResourceInfo;
 import jakarta.ws.rs.core.Context;
-
-import io.quarkiverse.openapi.problem.ExceptionMapperBase;
-import io.quarkiverse.openapi.problem.HttpProblem;
-import io.quarkiverse.openapi.problem.ProblemRuntimeConfig.ConstraintViolationMapperConfig;
+import java.lang.reflect.Method;
+import java.lang.reflect.Parameter;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Optional;
+import java.util.Set;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 /**
  * Exception Mapper for ConstraintViolationException from Bean Validation API. Hibernate Validator, among others throw

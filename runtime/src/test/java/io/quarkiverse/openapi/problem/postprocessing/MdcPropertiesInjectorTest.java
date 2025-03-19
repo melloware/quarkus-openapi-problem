@@ -6,14 +6,12 @@ import static io.quarkiverse.openapi.problem.postprocessing.ProblemContextMother
 import static jakarta.ws.rs.core.Response.Status.BAD_REQUEST;
 import static org.assertj.core.api.Assertions.assertThat;
 
+import com.google.common.collect.Sets;
+import io.quarkiverse.openapi.problem.HttpProblem;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.slf4j.MDC;
-
-import com.google.common.collect.Sets;
-
-import io.quarkiverse.openapi.problem.HttpProblem;
 
 class MdcPropertiesInjectorTest {
 

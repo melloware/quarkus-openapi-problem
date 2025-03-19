@@ -1,12 +1,10 @@
 package io.quarkiverse.openapi.problem.test.server.service_one;
 
-import jakarta.inject.Inject;
-import jakarta.ws.rs.*;
-
-import org.eclipse.microprofile.rest.client.inject.RestClient;
-
 import io.quarkiverse.openapi.problem.HttpProblem;
 import io.quarkiverse.openapi.problem.test.client.ServiceTwoClient;
+import jakarta.inject.Inject;
+import jakarta.ws.rs.*;
+import org.eclipse.microprofile.rest.client.inject.RestClient;
 
 /**
  * Simulates a backend service

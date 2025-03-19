@@ -1,12 +1,10 @@
 package io.quarkiverse.openapi.problem.jackson;
 
-import jakarta.inject.Singleton;
-
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.module.SimpleModule;
-
 import io.quarkiverse.openapi.problem.HttpProblem;
 import io.quarkus.jackson.ObjectMapperCustomizer;
+import jakarta.inject.Singleton;
 
 @Singleton
 public final class JacksonProblemModuleRegistrar implements ObjectMapperCustomizer {

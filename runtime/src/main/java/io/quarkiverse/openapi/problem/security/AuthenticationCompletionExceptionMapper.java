@@ -2,12 +2,11 @@ package io.quarkiverse.openapi.problem.security;
 
 import static jakarta.ws.rs.core.Response.Status.UNAUTHORIZED;
 
-import jakarta.annotation.Priority;
-import jakarta.ws.rs.Priorities;
-
 import io.quarkiverse.openapi.problem.ExceptionMapperBase;
 import io.quarkiverse.openapi.problem.HttpProblem;
 import io.quarkus.security.AuthenticationCompletionException;
+import jakarta.annotation.Priority;
+import jakarta.ws.rs.Priorities;
 
 /**
  * Mapper overriding default Quarkus exception mapper to make all error responses compliant with RFC7807.<br>

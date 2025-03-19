@@ -1,11 +1,9 @@
 package io.quarkiverse.openapi.problem.postprocessing;
 
+import io.quarkiverse.openapi.problem.HttpProblem;
 import java.util.Collections;
 import java.util.Set;
-
 import org.slf4j.MDC;
-
-import io.quarkiverse.openapi.problem.HttpProblem;
 
 /**
  * Injects existing MDC properties listed in the configuration into final response. Missing MDC values and properties already

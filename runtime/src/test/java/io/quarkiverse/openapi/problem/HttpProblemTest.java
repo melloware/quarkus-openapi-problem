@@ -4,7 +4,6 @@ import static io.quarkiverse.openapi.problem.HttpProblemMother.complexProblem;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import jakarta.ws.rs.core.Response;
-
 import org.junit.jupiter.api.Test;
 
 class HttpProblemTest {

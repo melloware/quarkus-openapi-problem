@@ -5,11 +5,9 @@ import static io.quarkiverse.openapi.problem.HttpProblemMother.badRequestProblem
 import static io.quarkiverse.openapi.problem.postprocessing.ProblemContextMother.simpleContext;
 import static org.assertj.core.api.Assertions.assertThat;
 
-import java.net.URI;
-
-import org.junit.jupiter.api.Test;
-
 import io.quarkiverse.openapi.problem.HttpProblem;
+import java.net.URI;
+import org.junit.jupiter.api.Test;
 
 class ProblemDefaultsProviderTest {
 

@@ -2,13 +2,12 @@ package io.quarkiverse.openapi.problem.security;
 
 import static jakarta.ws.rs.core.Response.Status.UNAUTHORIZED;
 
-import jakarta.ws.rs.core.Response;
-
 import io.quarkiverse.openapi.problem.HttpProblem;
 import io.quarkus.vertx.http.runtime.security.ChallengeData;
 import io.quarkus.vertx.http.runtime.security.HttpAuthenticator;
 import io.smallrye.mutiny.Uni;
 import io.vertx.ext.web.RoutingContext;
+import jakarta.ws.rs.core.Response;
 
 final class HttpUnauthorizedUtils {
 

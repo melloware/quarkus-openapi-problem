@@ -2,12 +2,11 @@ package io.quarkiverse.openapi.problem.validation;
 
 import static jakarta.ws.rs.core.Response.Status.INTERNAL_SERVER_ERROR;
 
+import io.quarkiverse.openapi.problem.ExceptionMapperBase;
+import io.quarkiverse.openapi.problem.HttpProblem;
 import jakarta.annotation.Priority;
 import jakarta.validation.ValidationException;
 import jakarta.ws.rs.Priorities;
-
-import io.quarkiverse.openapi.problem.ExceptionMapperBase;
-import io.quarkiverse.openapi.problem.HttpProblem;
 
 /**
  * Exception Mapper for generic ValidationException from Bean Validation API.

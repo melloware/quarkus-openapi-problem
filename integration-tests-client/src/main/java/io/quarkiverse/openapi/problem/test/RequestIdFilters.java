@@ -1,15 +1,12 @@
 package io.quarkiverse.openapi.problem.test;
 
-import java.util.UUID;
-
+import io.vertx.ext.web.RoutingContext;
 import jakarta.inject.Inject;
 import jakarta.ws.rs.container.ContainerRequestContext;
-
+import java.util.UUID;
 import org.jboss.logmanager.MDC;
 import org.jboss.resteasy.reactive.server.ServerRequestFilter;
 import org.jboss.resteasy.reactive.server.ServerResponseFilter;
-
-import io.vertx.ext.web.RoutingContext;
 
 /**
  * Utility class for managing request-related information using JBossLog MDC

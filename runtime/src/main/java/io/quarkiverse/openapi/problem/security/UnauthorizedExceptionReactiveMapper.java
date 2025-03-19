@@ -1,16 +1,14 @@
 package io.quarkiverse.openapi.problem.security;
 
-import jakarta.ws.rs.Priorities;
-import jakarta.ws.rs.core.Response;
-
-import org.jboss.resteasy.reactive.server.ServerExceptionMapper;
-
 import io.quarkiverse.openapi.problem.ExceptionMapperBase;
 import io.quarkiverse.openapi.problem.HttpProblem;
 import io.quarkiverse.openapi.problem.postprocessing.ProblemContext;
 import io.quarkus.security.UnauthorizedException;
 import io.smallrye.mutiny.Uni;
 import io.vertx.ext.web.RoutingContext;
+import jakarta.ws.rs.Priorities;
+import jakarta.ws.rs.core.Response;
+import org.jboss.resteasy.reactive.server.ServerExceptionMapper;
 
 /**
  * Mapper overriding default Quarkus exception mapper to make all error responses compliant with RFC7807.

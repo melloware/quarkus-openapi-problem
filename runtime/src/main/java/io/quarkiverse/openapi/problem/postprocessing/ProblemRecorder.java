@@ -1,13 +1,11 @@
 package io.quarkiverse.openapi.problem.postprocessing;
 
-import java.util.Set;
-
-import jakarta.enterprise.inject.spi.CDI;
-
 import io.quarkiverse.openapi.problem.ExceptionMapperBase;
 import io.quarkiverse.openapi.problem.ProblemRuntimeConfig;
 import io.quarkiverse.openapi.problem.validation.ConstraintViolationExceptionMapper;
 import io.quarkus.runtime.annotations.Recorder;
+import jakarta.enterprise.inject.spi.CDI;
+import java.util.Set;
 
 /**
  * Quarkus Recorder that applies configuration in the runtime.

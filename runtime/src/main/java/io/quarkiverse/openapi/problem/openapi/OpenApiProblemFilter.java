@@ -1,13 +1,12 @@
 package io.quarkiverse.openapi.problem.openapi;
 
-import org.eclipse.microprofile.openapi.OASFilter;
-import org.eclipse.microprofile.openapi.models.responses.APIResponse;
-
 import io.quarkiverse.openapi.problem.HttpProblem;
 import io.quarkus.smallrye.openapi.OpenApiFilter;
 import io.smallrye.openapi.internal.models.media.Content;
 import io.smallrye.openapi.internal.models.media.MediaType;
 import io.smallrye.openapi.internal.models.media.Schema;
+import org.eclipse.microprofile.openapi.OASFilter;
+import org.eclipse.microprofile.openapi.models.responses.APIResponse;
 
 /**
  * OpenAPI filter that automatically adds Problem Details schema to error responses.

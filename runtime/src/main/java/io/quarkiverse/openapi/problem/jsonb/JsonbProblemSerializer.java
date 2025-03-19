@@ -1,12 +1,11 @@
 package io.quarkiverse.openapi.problem.jsonb;
 
-import jakarta.json.bind.serializer.JsonbSerializer;
-import jakarta.json.bind.serializer.SerializationContext;
-import jakarta.json.stream.JsonGenerator;
-
 import io.quarkiverse.openapi.problem.HttpProblem;
 import io.quarkiverse.openapi.problem.InstanceUtils;
 import io.quarkiverse.openapi.problem.validation.Violation;
+import jakarta.json.bind.serializer.JsonbSerializer;
+import jakarta.json.bind.serializer.SerializationContext;
+import jakarta.json.stream.JsonGenerator;
 
 /**
  * Low level JsonB serializer for Problem type.

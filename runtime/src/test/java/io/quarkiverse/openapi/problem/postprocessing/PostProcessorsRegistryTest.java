@@ -4,12 +4,10 @@ import static io.quarkiverse.openapi.problem.HttpProblemMother.badRequestProblem
 import static io.quarkiverse.openapi.problem.postprocessing.ProblemContextMother.simpleContext;
 import static org.assertj.core.api.Assertions.assertThat;
 
+import io.quarkiverse.openapi.problem.HttpProblem;
 import java.util.ArrayList;
 import java.util.List;
-
 import org.junit.jupiter.api.Test;
-
-import io.quarkiverse.openapi.problem.HttpProblem;
 
 class PostProcessorsRegistryTest {
 

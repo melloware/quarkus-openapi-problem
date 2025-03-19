@@ -1,8 +1,7 @@
 package io.quarkiverse.openapi.problem.postprocessing;
 
-import java.util.Comparator;
-
 import io.quarkiverse.openapi.problem.HttpProblem;
+import java.util.Comparator;
 
 /**
  * Post-processors use, change or enhance HttpProblem created by ExceptionMappers via 'apply' method, before they get

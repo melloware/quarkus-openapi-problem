@@ -1,12 +1,10 @@
 package io.quarkiverse.openapi.problem.test;
 
+import io.quarkiverse.openapi.problem.HttpProblem;
 import jakarta.ws.rs.Priorities;
 import jakarta.ws.rs.core.Response;
 import jakarta.ws.rs.ext.Provider;
-
 import org.eclipse.microprofile.rest.client.ext.ResponseExceptionMapper;
-
-import io.quarkiverse.openapi.problem.HttpProblem;
 
 /**
  * Provider used in MicroProfile REST Client applications to handle HttpProblem responses between API calls.

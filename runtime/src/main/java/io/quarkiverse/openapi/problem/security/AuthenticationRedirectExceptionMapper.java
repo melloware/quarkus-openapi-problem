@@ -1,12 +1,11 @@
 package io.quarkiverse.openapi.problem.security;
 
-import jakarta.annotation.Priority;
-import jakarta.ws.rs.Priorities;
-import jakarta.ws.rs.core.HttpHeaders;
-
 import io.quarkiverse.openapi.problem.ExceptionMapperBase;
 import io.quarkiverse.openapi.problem.HttpProblem;
 import io.quarkus.security.AuthenticationRedirectException;
+import jakarta.annotation.Priority;
+import jakarta.ws.rs.Priorities;
+import jakarta.ws.rs.core.HttpHeaders;
 
 /**
  * Mapper overriding default Quarkus exception mapper to make all error responses compliant with RFC7807.

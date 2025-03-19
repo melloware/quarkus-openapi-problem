@@ -1,13 +1,11 @@
 package io.quarkiverse.openapi.problem.jackson;
 
+import com.fasterxml.jackson.databind.exc.UnrecognizedPropertyException;
+import io.quarkiverse.openapi.problem.ExceptionMapperBase;
+import io.quarkiverse.openapi.problem.HttpProblem;
 import jakarta.annotation.Priority;
 import jakarta.ws.rs.Priorities;
 import jakarta.ws.rs.core.Response;
-
-import com.fasterxml.jackson.databind.exc.UnrecognizedPropertyException;
-
-import io.quarkiverse.openapi.problem.ExceptionMapperBase;
-import io.quarkiverse.openapi.problem.HttpProblem;
 
 /**
  * UnrecognizedPropertyException is thrown by Jackson, when request payload json does not fit DTO object with @Valid annotation

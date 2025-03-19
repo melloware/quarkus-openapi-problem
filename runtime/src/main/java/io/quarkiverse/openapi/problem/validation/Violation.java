@@ -1,9 +1,8 @@
 package io.quarkiverse.openapi.problem.validation;
 
-import org.eclipse.microprofile.openapi.annotations.media.Schema;
-
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import org.eclipse.microprofile.openapi.annotations.media.Schema;
 
 @Data
 @AllArgsConstructor

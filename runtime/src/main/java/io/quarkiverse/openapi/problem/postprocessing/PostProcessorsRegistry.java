@@ -1,11 +1,9 @@
 package io.quarkiverse.openapi.problem.postprocessing;
 
+import io.quarkiverse.openapi.problem.HttpProblem;
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
-
 import org.slf4j.LoggerFactory;
-
-import io.quarkiverse.openapi.problem.HttpProblem;
 
 /**
  * Container for prioritised list of Problem post-processors. This class is thread-safe.

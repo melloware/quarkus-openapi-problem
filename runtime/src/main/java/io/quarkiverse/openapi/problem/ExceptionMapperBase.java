@@ -1,16 +1,14 @@
 package io.quarkiverse.openapi.problem;
 
+import io.quarkiverse.openapi.problem.postprocessing.PostProcessorsRegistry;
+import io.quarkiverse.openapi.problem.postprocessing.ProblemContext;
 import jakarta.ws.rs.core.Context;
 import jakarta.ws.rs.core.Response;
 import jakarta.ws.rs.core.UriInfo;
 import jakarta.ws.rs.ext.ExceptionMapper;
-
 import org.eclipse.microprofile.openapi.annotations.media.Content;
 import org.eclipse.microprofile.openapi.annotations.media.Schema;
 import org.eclipse.microprofile.openapi.annotations.responses.APIResponse;
-
-import io.quarkiverse.openapi.problem.postprocessing.PostProcessorsRegistry;
-import io.quarkiverse.openapi.problem.postprocessing.ProblemContext;
 
 /**
  * Base class for all ExceptionMappers in this extension, takes care of mapping Exceptions to Problems, triggering
