@@ -55,5 +55,17 @@ jobs:
       - name: Build with Maven
         run: mvn -B clean install -Dno-format
 
+      - name: Integration Test (Jackson Classic)
+        run: mvn -B clean verify -Pjackson-classic -pl integration-test
+
+      - name: Integration Test (JsonB Classic)
+        run: mvn -B clean verify -Pjsonb-classic -pl integration-test
+
+      - name: Integration Test (Jackson Reactive)
+        run: mvn -B clean verify -Pjackson-reactive -pl integration-test
+
+      - name: Integration Test (JsonB Reactive)
+        run: mvn -B clean verify -Pjsonb-reactive -pl integration-test
+
       - name: Build with Maven (Native)
         run: mvn -B install -Dnative -Dquarkus.native.container-build -Dnative.surefire.skip
