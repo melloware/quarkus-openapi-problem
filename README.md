@@ -27,6 +27,7 @@ This library extends the original [Quarkus RestEASY Problem](https://github.com/
 - Mapped Diagnostic Context (MDC) values are included in the `context` field
 - Validation errors are represented in the RFC9457 `errors` array
 - `@ApiResponse` for 4xx/5xx automatically get mapped with `content = @Content(mediaType = "application/problem+json", schema = @Schema(implementation = HttpProblem.class))`
+- Improve MicroProfile REST Client API to API forwarding of `HttpProblem` responses
 
 ## Why you should use this extension?
 - __consistency__ - it unifies your REST API error messages, and gives it much needed consistency, no matter which JSON provider (Jackson vs JsonB) or paradigm (classic/blocking vs reactive) you're using.   
