@@ -57,7 +57,7 @@ so-called "HTTP APIs" are usually not.
 Add this to your pom.xml:
 ```xml
 <dependency>
-    <groupId>io.quarkiverse.openapi-problem</groupId>
+    <groupId>com.melloware.openapi-problem</groupId>
     <artifactId>quarkus-openapi-problem</artifactId>
     <version>3.19.0</version>
 </dependency>
