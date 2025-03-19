@@ -7,10 +7,8 @@
 </div>
 <br>
 
-[![License](https://img.shields.io/badge/license-Apache%202.0-yellow.svg)](https://github.com/quarkiverse/quarkus-openapi-problem/blob/main/LICENSE.txt)
-
 [![Version](https://img.shields.io/maven-central/v/com.melloware.openapi-problem/quarkus-openapi-problem?logo=apache-maven&style=flat-square)](https://search.maven.org/artifact/com.melloware.openapi-problem/quarkus-openapi-problem)
-[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg?style=flat-square)](https://opensource.org/licenses/Apache-2.0)
+[![License](https://img.shields.io/badge/license-Apache%202.0-yellow.svg)](https://github.com/quarkiverse/quarkus-openapi-problem/blob/main/LICENSE.txt)
 [![Build](https://github.com/melloware/quarkus-openapi-problem/actions/workflows/build.yml/badge.svg)](https://github.com/melloware/quarkus-openapi-problem/actions/workflows/build.yml)
 
 
