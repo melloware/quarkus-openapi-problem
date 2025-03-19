@@ -4,7 +4,7 @@
     <parent>
         <groupId>com.melloware.openapi-problem</groupId>
         <artifactId>quarkus-openapi-problem-parent</artifactId>
-        <version>0.0.1</version>
+        <version>999-SNAPSHOT</version>
     </parent>
 
     <artifactId>openapi-problem-integration-tests-client</artifactId>
@@ -19,7 +19,7 @@
         <dependency>
             <groupId>com.melloware.openapi-problem</groupId>
             <artifactId>quarkus-openapi-problem</artifactId>
-            <version>0.0.1</version>
+            <version>999-SNAPSHOT</version>
         </dependency>
         <dependency>
             <groupId>io.quarkus</groupId>

@@ -3,7 +3,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.melloware.openapi-problem</groupId>
     <artifactId>quarkus-openapi-problem-parent</artifactId>
-    <version>0.0.1</version>
+    <version>999-SNAPSHOT</version>
     <packaging>pom</packaging>
     <name>Quarkus - OpenAPI - Problem - Parent</name>
     <description>Problem Details for HTTP APIs (RFC-9457) implementation for Quarkus / OpenAPI - Parent POM.
