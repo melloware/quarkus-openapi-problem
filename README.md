@@ -59,7 +59,7 @@ Add this to your pom.xml:
 <dependency>
     <groupId>com.melloware.openapi-problem</groupId>
     <artifactId>quarkus-openapi-problem</artifactId>
-    <version>3.19.0</version>
+    <version>0.0.1</version>
 </dependency>
 ```
 
