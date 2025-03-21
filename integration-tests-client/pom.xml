@@ -12,16 +12,16 @@
     <packaging>pom</packaging>
 
     <properties>
-        <maven.deploy.skip>true</maven.deploy.skip>
-        <maven.install.skip>true</maven.install.skip>
+        <maven.deploy.skip>false</maven.deploy.skip>
+        <maven.install.skip>false</maven.install.skip>
     </properties>
 
     <modules>
-        <module>services/gateway-service</module>
-        <module>services/service-one-backend</module>
         <module>services/service-two-backend</module>
-        <module>tests/generated-client-tests</module>
+        <module>services/service-one-backend</module>
+        <module>services/gateway-service</module>
         <module>clients/generated-clients</module>
+        <module>tests/generated-client-tests</module>
     </modules>
 
     <dependencyManagement>
