@@ -3,44 +3,42 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>com.melloware.openapi-problem</groupId>
-        <artifactId>quarkus-openapi-problem-parent</artifactId>
+        <artifactId>openapi-problem-integration-tests-client-parent</artifactId>
         <version>999-SNAPSHOT</version>
+        <relativePath>../../pom.xml</relativePath>
     </parent>
 
-    <artifactId>openapi-problem-integration-tests-client-parent</artifactId>
-    <name>Quarkus - OpenAPI - Problem - Integration Tests Client Parent</name>
-    <packaging>pom</packaging>
+    <artifactId>openapi-problem-integration-tests-client</artifactId>
+    <name>Quarkus - OpenAPI - Problem - Integration Tests Client</name>
 
     <properties>
-        <maven.deploy.skip>false</maven.deploy.skip>
-        <maven.install.skip>false</maven.install.skip>
+        <maven.deploy.skip>true</maven.deploy.skip>
+        <maven.install.skip>true</maven.install.skip>
     </properties>
 
-    <modules>
-        <module>services/service-two-backend</module>
-        <module>services/service-one-backend</module>
-        <module>services/gateway-service</module>
-        <module>clients/generated-clients</module>
-        <module>tests/generated-client-tests</module>
-    </modules>
+    <dependencies>
 
-    <dependencyManagement>
-        <dependencies>
-            <dependency>
-                <groupId>io.quarkus</groupId>
-                <artifactId>quarkus-bom</artifactId>
-                <version>${quarkus.version}</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
+        <dependency>
+            <groupId>com.melloware.openapi-problem</groupId>
+            <artifactId>openapi-problem-integration-tests-generated-clients</artifactId>
+            <version>999-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>io.quarkus</groupId>
+            <artifactId>quarkus-arc</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>io.quarkus</groupId>
+            <artifactId>quarkus-junit5</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>io.rest-assured</groupId>
+            <artifactId>rest-assured</artifactId>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
 
-            <dependency>
-                <groupId>com.melloware.openapi-problem</groupId>
-                <artifactId>quarkus-openapi-problem</artifactId>
-                <version>999-SNAPSHOT</version>
-            </dependency>
-        </dependencies>
-    </dependencyManagement>
     <build>
         <plugins>
             <plugin>

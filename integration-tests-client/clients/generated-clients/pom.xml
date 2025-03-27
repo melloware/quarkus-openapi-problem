@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>com.melloware.openapi-problem</groupId>
+        <artifactId>openapi-problem-integration-tests-client-parent</artifactId>
+        <version>999-SNAPSHOT</version>
+        <relativePath>../../pom.xml</relativePath>
+    </parent>
+
+    <artifactId>openapi-problem-integration-tests-generated-clients</artifactId>
+    <name>Quarkus - OpenAPI - Problem - Integration Tests Generated Clients</name>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.melloware.openapi-problem</groupId>
+            <artifactId>quarkus-openapi-problem</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>io.quarkus</groupId>
+            <artifactId>quarkus-rest-jackson</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>io.quarkus</groupId>
+            <artifactId>quarkus-rest-client-jackson</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>io.quarkus</groupId>
+            <artifactId>quarkus-arc</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>io.quarkus</groupId>
+            <artifactId>quarkus-rest</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>io.quarkus</groupId>
+            <artifactId>quarkus-smallrye-openapi</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>io.quarkiverse.openapi.generator</groupId>
+            <artifactId>quarkus-openapi-generator</artifactId>
+            <version>2.8.2</version>
+        </dependency>
+    </dependencies>
+</project>
