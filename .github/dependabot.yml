@@ -1,34 +1,16 @@
 version: 2
 updates:
-  - package-ecosystem: maven
+  - package-ecosystem: "maven"
     directory: "/"
     schedule:
-      interval: daily
-      time: "04:00"
-      timezone: Europe/Warsaw
-    labels:
-      - dependencies
-    allow:
-      # Runtime / test dependencies
-      - dependency-name: io.quarkus:*
-      - dependency-name: com.google.code.findbugs:jsr305
-      - dependency-name: org.zalando:problem
-      - dependency-name: org.assertj:*
-      - dependency-name: com.tngtech.archunit:*
-      - dependency-name: org.openjdk.jmh:*
-
-      # Maven plugins
-      - dependency-name: org.apache.maven.plugins:*
-      - dependency-name: org.simplify4u.plugins:sign-maven-plugin
-      - dependency-name: de.thetaphi:forbiddenapis
-      - dependency-name: net.revelc.code.formatter:formatter-maven-plugin
-      - dependency-name: net.revelc.code:impsort-maven-plugin
+      interval: "daily"
     ignore:
-      - dependency-name: io.quarkus:quarkus-maven-plugin
-    rebase-strategy: disabled
-  
+      - dependency-name: "io.quarkus:quarkus-bom"
+      - dependency-name: "io.quarkus:quarkus-extension-processor"
+      - dependency-name: "io.quarkus:quarkus-maven-plugin"
+      - dependency-name: "io.quarkus:quarkus-extension-maven-plugin"
+      - dependency-name: "io.quarkus:quarkus-config-doc-maven-plugin"
   - package-ecosystem: "github-actions"
     directory: "/"
     schedule:
-      interval: weekly
-      timezone: Europe/Warsaw
+      interval: "daily"
