@@ -7,6 +7,9 @@
 </div>
 <br>
 
+> [!IMPORTANT]
+> This extension has been archived because all of the changes here have been backported into Quarkus RestEasy Problem extension!
+
 [![Version](https://img.shields.io/maven-central/v/com.melloware.openapi-problem/quarkus-openapi-problem?logo=apache-maven&style=flat-square)](https://search.maven.org/artifact/com.melloware.openapi-problem/quarkus-openapi-problem)
 [![License](https://img.shields.io/badge/license-Apache%202.0-yellow.svg)](https://github.com/quarkiverse/quarkus-openapi-problem/blob/main/LICENSE.txt)
 [![Build](https://github.com/melloware/quarkus-openapi-problem/actions/workflows/build.yml/badge.svg)](https://github.com/melloware/quarkus-openapi-problem/actions/workflows/build.yml)
